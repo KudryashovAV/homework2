@@ -3,9 +3,9 @@
 <table id="movies">
   <thead>
     <tr>
-      <th class ='a'><%= link_to "Movie Title", movies_url %></th>
+      <th class ='a'><%= link_to "Movie Title", movies_path(:sort_title => "title") %></th>
       <th>Rating</th>
-      <th class = 'a'><%= link_to "Release Date", movies_url %></th>
+      <th class = 'a'><%= link_to "Release Date", movies_path(:sort_date => "release_date") %></th>
       <th>More Info</th>
     </tr>
   </thead>
