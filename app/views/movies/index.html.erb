@@ -1,7 +1,6 @@
 <h1>All Movies</h1>
 
-<table id="movies">
-  <%= form_tag movies_path, :method => :get do %>
+<%= form_tag movies_path, :method => :get do %>
   Include:
   <% @all_ratings.each do |rating| %>
     <%= rating %>
@@ -9,6 +8,7 @@
   <% end %>
   <%= submit_tag 'Refresh' %>
 <% end %>
+<table id="movies">
   <thead>
     <tr>
       <th class ='a'><%= link_to "Movie Title", movies_path(:sort_by => "title") %></th>
