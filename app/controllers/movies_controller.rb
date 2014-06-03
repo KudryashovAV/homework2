@@ -2,14 +2,12 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = ['G','PG','PG-13','R', 'NC-17']
-    if params[:ratings]
-      session.clear
-      session[:ratings] = params[:ratings]
-      @movies = Movie.where(rating: session[:ratings].keys)
+    if params[:ratings] != nil
+      @movies = Movie.where(rating: params[:ratings].keys)
     elsif params[:sort_by] == "title"
-      @movies = Movie.where(rating: session[:ratings].keys).order("title ASC")
+      @movies = Movie.order(:title)
     elsif params[:sort_by] == "release_date"
-      @movies = Movie.where(rating: session[:ratings].keys).order("release_date DESC")
+      @movies = Movie.order(:release_date)
     else
       @movies = Movie.all
     end
