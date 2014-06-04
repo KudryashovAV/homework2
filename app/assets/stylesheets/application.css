@@ -44,8 +44,12 @@ table#movies th {
   font-weight: bold;
   background-color: wheat;
 }
-table#movies th.a {
-  background-color: yellow;
+table#movies th.highlight {
+  background-color: #1E90FF;
+}
+
+table#movies tr:nth-child(2n+1) {
+  background-color: #AFEEEE;  
 }
 
 table#movies th, table#movies td {
