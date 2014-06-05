@@ -7,4 +7,6 @@
 
 <h3>Description</h3>
 
-<p class="description"><%= movie.description %></p>
+<p class="description">
+<%= truncate(movie.description, length: 50, separator: ' ') %><%= link_to "more", movie_path(movie) %>
+</p>

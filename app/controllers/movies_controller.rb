@@ -1,10 +1,10 @@
 class MoviesController < ApplicationController
-  helper_method :ratings_params, :all_ratings
+  helper_method :ratings_params, :all_ratings, :sort_column, :sort_direction 
 
   def index
     session[:sort_by] = params[:sort_by] if params[:sort_by]
     session[:ratings] = params[:ratings] if params[:ratings]
-    @movies = Movie.where(rating: ratings_params.keys).order(session[:sort_by])
+    @movies = Movie.where(rating: ratings_params.keys).order(session[:sort_by]+ ' ' + "#{params[:direction]}")
   end
 
   def show
