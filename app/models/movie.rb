@@ -2,8 +2,8 @@ class Movie < ActiveRecord::Base
   validates :title, presence: true
   validates :rating, presence: true
   validates :release_date, presence: { message: "looks bad" }
-  validates :description, presence: true,
-                          length: { minimum: 10 }
+  #validates :description, presence: true,
+                          #length: { minimum: 10 }
 
   scope :list, ->(options) {
     res = all
