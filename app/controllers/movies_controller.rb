@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_filter :authorize
   helper_method :ratings_params, :all_ratings, :sort_column, :sort_direction 
 
   def index

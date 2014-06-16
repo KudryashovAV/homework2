@@ -33,6 +33,12 @@ h1.title {
   font-size: 2em;
   font-style: normal;
 }
+
+div.current_user {
+  float:right; 
+  margin-right: 20px;
+}
+
 table#movies {
   margin: 10px;
   border-collapse: collapse;
