@@ -10,11 +10,9 @@ class CreateUsers < ActiveRecord::Migration
 
     add_index :users, :email
     add_index :users, :remember_token
-    add_attachment :users, :avatar
   end
 
   def self.down
     drop_table :users
-    remove_attachment :users, :avatar
   end
 end
