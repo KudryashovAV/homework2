@@ -1,7 +1,6 @@
 class CreateMovies < ActiveRecord::Migration
   def change
     create_table :movies do |t|
-      t.file :avatar
       t.string :title
       t.string :rating
       t.text :description
