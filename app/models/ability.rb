@@ -2,8 +2,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new 
-    
-    user.admin? ? (can :manage, :all) : (can :show, :all)
+    user ||= User.new
+    if user.admin?
+      can :manage, :all
+    else
+      can :show, :all
+    end
   end
 end
