@@ -32,7 +32,10 @@ gem 'rspec-rails', '2.99'
 
 gem 'clearance'
 
-gem "paperclip", "~> 4.1"
+gem 'paperclip', '~> 4.1'
+
+gem 'cancan'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

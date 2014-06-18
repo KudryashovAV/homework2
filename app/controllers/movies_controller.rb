@@ -10,6 +10,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = find_movie
+    authorize! :show, @movie
   end
 
   def new
