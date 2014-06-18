@@ -11,5 +11,5 @@
   ["Raiders of the Lost Ark", "PG", "1981-06-12 00:00:00", "Raiders of the Lost Ark (later marketed as Indiana Jones and the Raiders of the Lost Ark) "],
   ["Chicken Run", "G", "2000-06-21 00:00:00", "Chicken Run is a 2000 British-American stop-motion animated comedy film"]
 ].each do |(title, rating, date, description)|
-  Movie.create! title: title, rating: rating, release_date: DateTime.parse(date), description: description
+  Movie.create! title: title, rating: rating, release_date: DateTime.parse(date), description: description 
 end

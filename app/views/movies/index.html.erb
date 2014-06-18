@@ -12,6 +12,7 @@
 <table id="movies">
   <thead>
     <tr>
+      <th>Avatar</th>
       <th class="<%= 'highlight' if session[:sort_by] == 'title' %>">
         <%= sortable 'title', "Movie title" %>                              
       </th>
@@ -25,6 +26,7 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
+        <td><%= image_tag movie.avatar.url(:thumb) %></td>
         <td><%= link_to "#{movie.title}", movie_path(movie) %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>

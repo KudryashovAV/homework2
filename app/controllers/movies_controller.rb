@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_filter :authorize
   helper_method :ratings_params, :all_ratings, :sort_column, :sort_direction 
 
   def index
@@ -42,6 +43,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie = find_movie
     @movie.destroy
+    @movie.avatar = nil
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_url
   end
@@ -53,7 +55,7 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params[:movie].permit(:title, :rating, :release_date, :description)
+    params[:movie].permit(:title, :rating, :release_date, :description, :avatar)
   end
 
   def all_ratings
