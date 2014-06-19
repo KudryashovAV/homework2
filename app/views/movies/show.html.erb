@@ -2,8 +2,12 @@
 
 <%= image_tag @movie.avatar.url %>
 
-<% if current_user.email == '123@qwe.qwe' %>
+<% if @movie.user == current_user || current_user.email == '123@qwe.qwe' %>
 <%= link_to "Edit", [:edit, @movie] %>
+<% end %>
+
+<% if current_user.email == '123@qwe.qwe' %>
 <%= button_to "Delete", @movie, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
+
 <%= link_to "Back to movie list", movies_path %>

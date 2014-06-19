@@ -22,9 +22,10 @@
   <%= f.label :avatar %>
   <%= f.file_field :avatar %>
 
+  <% if current_user.email == '123@qwe.qwe' %>
   <%= f.label :published %>
   <%= f.select(:published, ['false','true']) %>
-
+  <% end %>
 
   <%= f.submit "Submit" %>
 <% end %>

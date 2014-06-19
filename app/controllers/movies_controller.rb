@@ -30,10 +30,12 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = find_movie
+    authorize 
   end
 
   def update
     @movie = find_movie
+    authorize 
     if @movie.update_attributes(movie_params)
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
