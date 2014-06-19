@@ -6,6 +6,7 @@
 <% end %>
 
 <%= form_for @movie do |f| %>
+  
   <%= f.label :title %>
   <%= f.text_field :title %>
 
@@ -20,6 +21,10 @@
 
   <%= f.label :avatar %>
   <%= f.file_field :avatar %>
+
+  <%= f.label :published %>
+  <%= f.select(:published, ['false','true']) %>
+
 
   <%= f.submit "Submit" %>
 <% end %>
