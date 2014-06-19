@@ -9,4 +9,9 @@ class Ability
       can :show, :all
     end
   end
+
+  def update?
+    user.admin? || user == movie.user
+  end
+  alias_method :edit?, :update?
 end

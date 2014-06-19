@@ -22,6 +22,7 @@
       </th>
       <th>More Info</th>
       <th>Author</th>
+      <th>Publication</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +35,8 @@
         <td>
           <%= truncate(movie.description, length: 50, separator: ' ') %><%= link_to "more", movie_path(movie) %>
         </td>
+        <td><%= movie.user_id %></td>
+        <td><%= movie.published %></td>
       </tr>
     <% end %>
   </tbody>
