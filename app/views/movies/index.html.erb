@@ -35,7 +35,7 @@
         <td>
           <%= truncate(movie.description, length: 50, separator: ' ') %><%= link_to "more", movie_path(movie) %>
         </td>
-        <td><%= movie.user.email %></td>
+        <td class="<%= 'author' if movie.user.email == 'current_user' %>"><%= movie.user.email %></td>
         <td><%= movie.published %></td>
       </tr>
     <% end %>
