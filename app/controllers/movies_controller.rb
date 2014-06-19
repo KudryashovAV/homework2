@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = find_movie   
+    @movie = find_movie 
   end
 
   def new
@@ -35,7 +35,8 @@ class MoviesController < ApplicationController
 
   def update
     @movie = find_movie
-    authorize 
+    @movie.published = false
+    authorize
     if @movie.update_attributes(movie_params)
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
