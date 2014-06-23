@@ -5,11 +5,8 @@ class MoviesController < ApplicationController
   def index
     session[:sort_by] = params[:sort_by] if params[:sort_by]
     session[:ratings] = params[:ratings] if params[:ratings]
-
-    
-    @movies = Movie.list_for(current_user, rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
-    
-
+    #@movies = Movie.where(rating: ratings_params.keys).order(session[:sort_by]+ ' ' + "#{params[:direction]}")
+    @movies = Movie.list_for(current_user, rating: ratings_params.keys, order:(session[:sort_by] + " " + "#{params[:direction]}"))
   end
 
   def show
