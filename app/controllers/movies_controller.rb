@@ -5,7 +5,11 @@ class MoviesController < ApplicationController
   def index
     session[:sort_by] = params[:sort_by] if params[:sort_by]
     session[:ratings] = params[:ratings] if params[:ratings]
-    @movies = Movie.where(rating: ratings_params.keys).order(session[:sort_by]+ ' ' + "#{params[:direction]}")
+
+    
+    @movies = Movie.list_for(current_user, rating: ratings_params.keys, order:("#{session[:movies_sort]}" + " " + "#{params[:direction]}"))
+    
+
   end
 
   def show
@@ -37,12 +41,24 @@ class MoviesController < ApplicationController
     @movie = find_movie
     @movie.published = false
     authorize
-    if @movie.update_attributes(movie_params)
+    @movie.attributes = movie_params
+    if @movie.valid?
+      unless @movie.published?
+        Movie.create! Movie.find(@movie.id).attributes.except('id', 'created_at', 'updated_at')
+      end
+      @movie.save
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to @movie
     else
       render 'edit'
     end
+  end
+
+  def publish
+    @movie = find_movie
+    authorize 
+    @movie.update_column :published, false
+    redirect_to @movie
   end
 
   def destroy
@@ -60,7 +76,10 @@ class MoviesController < ApplicationController
   end
 
   def movie_params
-    params[:movie].permit(:title, :rating, :release_date, :description, :avatar, :published)
+    #params[:movie].permit(:title, :rating, :release_date, :description, :avatar, :published)
+    fields = [:title, :rating, :release_date, :description, :avatar]
+    fields += [:published] if current_user.admin?
+    params.require(:movie).permit(fields)
   end
 
   def all_ratings

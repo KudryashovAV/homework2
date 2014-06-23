@@ -6,6 +6,7 @@
 <% end %>
 
 <%= form_for @movie do |f| %>
+  
   <%= f.label :title %>
   <%= f.text_field :title %>
 
@@ -19,7 +20,7 @@
   <%= f.text_area :description %>
 
   <%= f.label :avatar %>
-  <%= f.file_field :avatar %>
+  <%= f.file_field :avatar %>  
   
   <%= f.submit "Submit" %>
 <% end %>
