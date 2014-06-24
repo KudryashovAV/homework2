@@ -21,8 +21,10 @@
         <%= sortable 'release_date', "Release date" %>
       </th>
       <th>More Info</th>
-      <th>Author</th>
-      <th>Publication</th>
+      <th class="<%= 'highlight' if session[:sort_by] == ' user_id' %>">
+        <%= sortable ' user_id', "Author" %>
+      <th class="<%= 'highlight' if session[:sort_by] == 'published' %>">
+        <%= sortable 'published', "Publication" %>
     </tr>
   </thead>
   <tbody>
