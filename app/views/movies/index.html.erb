@@ -21,7 +21,10 @@
         <%= sortable 'release_date', "Release date" %>
       </th>
       <th>More Info</th>
-      <th>Author</th>
+      <th class="<%= 'highlight' if session[:sort_by] == ' user_id' %>">
+        <%= sortable ' user_id', "Author" %>
+      <th class="<%= 'highlight' if session[:sort_by] == 'published' %>">
+        <%= sortable 'published', "Publication" %>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +37,8 @@
         <td>
           <%= truncate(movie.description, length: 50, separator: ' ') %><%= link_to "more", movie_path(movie) %>
         </td>
+        <td class="<%= 'author' if movie.user.email == current_user %>"><%= movie.user.email %></td>
+        <td><%= movie.published %></td>
       </tr>
     <% end %>
   </tbody>

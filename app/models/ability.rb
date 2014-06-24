@@ -9,4 +9,5 @@ class Ability
       can :show, :all
     end
   end
+
 end

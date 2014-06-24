@@ -8,16 +8,23 @@ class Movie < ActiveRecord::Base
                           length: { minimum: 10 }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  scope :list, ->(options) {
+  scope :list_for, ->(user, options) {
     res = all
     res = res.where(rating: options[:rating]) if options.key? :rating
     res = res.order(options[:order]) if options.key? :order
+    res = res.where('published = :d OR user_id = :u', d: true, u: user.id) if !user.admin?
     res
   }
+
+  before_validation :generate_twin_id, on: :create
  
   def self.all_ratings
     #Movie.select(:rating).distinct.pluck(:rating)
     all.map(&:rating).uniq
+  end
+
+  def generate_twin_id
+    self.twin_id = SecureRandom.uuid unless self.twin_id.present?
   end
 
 end
