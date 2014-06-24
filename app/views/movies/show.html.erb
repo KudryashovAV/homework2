@@ -7,6 +7,7 @@
 <% end %>
 
 <% if current_user.email == '123@qwe.qwe' %>
+<%= button_to "Publish", [:publish, @movie], method: :patch, data: { confirm: "Are you sure?" } unless @movie.published? %>
 <%= button_to "Delete", @movie, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 

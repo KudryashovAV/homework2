@@ -31,13 +31,11 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = find_movie
-    authorize 
   end
 
   def update
     @movie = find_movie
     @movie.published = false
-    authorize
     @movie.attributes = movie_params
     if @movie.valid?
       unless @movie.published?
@@ -53,8 +51,9 @@ class MoviesController < ApplicationController
 
   def publish
     @movie = find_movie
-    authorize 
-    @movie.update_column :published, false
+    @movie.update_column :published, true
+    @movie_understudy = Movie.where('twin_id = ?', @movie.twin_id)
+    @movie_understudy.order(:created_at).last.destroy if @movie_understudy.many?
     redirect_to @movie
   end
 
